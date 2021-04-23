@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-levelup-modal',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./levelup-modal.component.scss'],
 })
 export class LevelupModalComponent implements OnInit {
+
+  @Input() level: number;
+
   constructor() {}
 
   ngOnInit(): void {}
