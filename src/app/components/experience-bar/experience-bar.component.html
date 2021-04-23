@@ -1,0 +1,15 @@
+<header class="experience-bar">
+  <span>0 xp</span>
+  <div>
+    <div [style.width.%]="percentToNextLevel"></div>
+
+    <span
+      *ngIf="currentExperience > 0"
+      class="current-experience"
+      [style.left.%]="percentToNextLevel"
+    >
+      {{ currentExperience }} xp
+    </span>
+  </div>
+  <span>{{ experienceToNextLevel }} xp</span>
+</header>

@@ -1,0 +1,30 @@
+<div class="countdown">
+    <div>
+        <span>{{minuteLeft}}</span>
+        <span>{{minuteRight}}</span>
+    </div>
+    <span>:</span>
+    <div>
+        <span>{{secondLeft}}</span>
+        <span>{{secondRight}}</span>
+    </div>
+</div>
+
+<ng-template *ngIf="hasFinished; else startOrAbort">
+    <button disabled class="start-cycle-button">
+        Ciclo encerrado
+    </button>
+</ng-template>
+<ng-template #startOrAbort>
+    <ng-template *ngIf="isActive; else startCycle">
+        <button type="button" class="start-cycle-button start-cycle-button-active" (onClick)="resetCountdown()">
+            Abandonar ciclo
+        </button>
+    </ng-template>
+
+    <ng-template #startCycle>
+        <button type="button" class="start-cycle-button" (onClick)="startCountdown()">
+            Iniciar um ciclo
+        </button>
+    </ng-template>
+</ng-template>

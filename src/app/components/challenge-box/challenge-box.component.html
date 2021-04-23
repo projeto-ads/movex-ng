@@ -1,0 +1,48 @@
+<div class="challenge-container">
+  <ng-template *ngIf="activeChallenge; else notActive">
+    <div class="challenge-active">
+      <header>Ganhe {{ activeChallenge.amount }} xp</header>
+
+      <main>
+        <img
+          src="assets/icons/body.svg"
+          *ngIf="activeChallenge.type === 'body'"
+        />
+        <img
+          src="assets/icons/eye.svg"
+          *ngIf="activeChallenge.type === 'eye'"
+        />
+
+        <strong>Novo desafio</strong>
+        <p>{{ activeChallenge.description }}</p>
+      </main>
+
+      <footer>
+        <button
+          type="button"
+          class="challenge-failed-button"
+          (onClick)="handleChallengeFailed()"
+        >
+          Falhei
+        </button>
+        <button
+          type="button"
+          class="challenge-succeeded-button"
+          (onClick)="handleChallengeSucceeded()"
+        >
+          Completei
+        </button>
+      </footer>
+    </div>
+  </ng-template>
+
+  <ng-template #notActive>
+    <div class="challenge-not-active">
+      <strong>Finalize um ciclo para receber um desafio</strong>
+      <p>
+        <img src="assets/icons/level-up.svg" alt="Level up" />
+        Avance de level completando os desafios.
+      </p>
+    </div>
+  </ng-template>
+</div>
