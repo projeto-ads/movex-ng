@@ -1,8 +1,9 @@
 export class Challenge {
-  public id: number;
-  public description: string;
-  public amount: number;
-  public type: string;
+
+  id: number;
+  description: string;
+  amount: number;
+  type: string;
 
   constructor(json?: Partial<Challenge>) {
     Object.assign(this, json);

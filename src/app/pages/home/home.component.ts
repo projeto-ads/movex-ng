@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Challenge } from 'src/app/model/challenge.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChallengeBoxComponent } from 'src/app/components/challenge-box/challenge-box.component';
+import { CountdownComponent } from 'src/app/components/countdown/countdown.component';
+import { ExperienceBarComponent } from 'src/app/components/experience-bar/experience-bar.component';
 import { Profile } from 'src/app/model/profile.model';
 import { ProfileService } from 'src/app/service/profile.service';
 
@@ -10,18 +12,24 @@ import { ProfileService } from 'src/app/service/profile.service';
 })
 export class HomeComponent implements OnInit {
 
-  public profile: Profile = new Profile();
-  public activeChallenge: Challenge;
+  @ViewChild('challengeBox', { read: ChallengeBoxComponent })
+  private challengeBoxComponent: ChallengeBoxComponent;
 
-  public minutes: number = 25;
-  public seconds: number = 0;
+  @ViewChild('countdown', { read: CountdownComponent })
+  private countdownComponent: CountdownComponent;
+
+  @ViewChild('experienceBar', { read: ExperienceBarComponent })
+  private experienceBarComponent: ExperienceBarComponent;
+
+  public profile: Profile;
+
   public experienceToNextLevel: number = 0;
 
   public isCountdownActive: boolean = false;
   public hasCountdownFinished: boolean = false;
 
   constructor(
-    private profileService: ProfileService
+    private profileService: ProfileService,
   ) { }
 
   ngOnInit(): void {
@@ -29,11 +37,29 @@ export class HomeComponent implements OnInit {
   }
 
   public getProfileInfo() {
-    this.profileService.getOne(1)
+    this.profileService.getProfileInfoById(1)
       .subscribe(profile => {
         this.profile = profile;
-        this.experienceToNextLevel = Math.pow(((this.profile.level + 1) * 4), 2)
+        this.experienceToNextLevel = Math.pow(((this.profile.level + 1) * 4), 2);
       });
+  }
+
+  public startChallenge() {
+    this.challengeBoxComponent.startNewChallenge();
+  }
+
+  public challengeBtnAction() {
+    this.countdownComponent.resetCountdown();
+  }
+
+  public challengeCompleted(profile: Profile) {
+    Object.assign(this.profile, profile);
+    this.experienceToNextLevel = Math.pow(((this.profile.level + 1) * 4), 2);
+    this.experienceBarComponent.currentExperience = this.profile.currentExperience;
+    this.experienceBarComponent.calcPercentToNextLevel();
+
+    this.profileService.updateProfileInfo(this.profile)
+      .subscribe();
   }
 
 }

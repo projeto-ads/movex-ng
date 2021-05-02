@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-levelup-modal',
@@ -9,9 +9,13 @@ export class LevelupModalComponent implements OnInit {
 
   @Input() level: number;
 
+  @Output() closeLevelUpModal: EventEmitter<void> = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  closeLevelUpModal() {}
+  closeModal() {
+    this.closeLevelUpModal.emit();
+  }
 }

@@ -1,11 +1,12 @@
 export class Profile {
-  public id: number;
-  public name: string;
-  public email: string;
-  public level: number;
-  public currentExperience: number;
-  public challengesCompleted: number;
-  public imageUrl: string;
+
+  id: number;
+  name: string;
+  email: string;
+  level: number = 1;
+  currentExperience: number = 0;
+  challengesCompleted: number = 0;
+  imageUrl: string;
 
   constructor(json?: Partial<Profile>) {
     Object.assign(this, json);

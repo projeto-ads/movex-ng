@@ -1,10 +1,9 @@
 <header class="experience-bar">
   <span>0 xp</span>
-  <div>
+  <div >
     <div [style.width.%]="percentToNextLevel"></div>
 
-    <span
-      *ngIf="currentExperience > 0"
+    <span *ngIf="currentExperience && currentExperience > 0"
       class="current-experience"
       [style.left.%]="percentToNextLevel"
     >
