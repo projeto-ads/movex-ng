@@ -20,13 +20,13 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   @Output() startChallenge: EventEmitter<void> = new EventEmitter();
 
-  public initialMinutes: number = 0;
-  public initialSeconds: number = 10;
+  public initialMinutes: number = 25;
+  public initialSeconds: number = 0;
 
   public minutes: number = this.initialMinutes;
   public seconds: number = this.initialSeconds;
 
-  public startAt: number = 10; // in seconds - 1500
+  public startAt: number = 1500; // in seconds - 1500
 
   public minuteLeft: string;
   public minuteRight: string;
