@@ -1,13 +1,33 @@
 <main class="container">
-    <app-experience-bar [currentExperience]="profile.currentExperience" [experienceToNextLevel]="experienceToNextLevel"></app-experience-bar>
+  <app-experience-bar #experienceBar
+    [currentExperience]="profile.currentExperience"
+    [experienceToNextLevel]="experienceToNextLevel"
+  ></app-experience-bar>
 
-    <section>
-      <div class="cycle-container">
-        <app-profile [name]="profile.name" [level]="profile.level" [imageUrl]="profile.imageUrl"></app-profile>
-        <app-completed-challenges [challengesCompleted]="profile.challengesCompleted"></app-completed-challenges>
-        <app-countdown [isActive]="isCountdownActive" [hasFinished]="hasCountdownFinished" [minutes]="minutes" [seconds]="seconds"></app-countdown>
-      </div>
+  <section>
+    <div class="cycle-container">
+      <app-profile
+        [name]="profile.name"
+        [level]="profile.level"
+        [imageUrl]="profile.imageUrl"
+      ></app-profile>
+      <app-completed-challenges
+        [challengesCompleted]="profile.challengesCompleted"
+      ></app-completed-challenges>
+      <app-countdown
+        #countdown
+        [isActive]="isCountdownActive"
+        [hasFinished]="hasCountdownFinished"
+        (startChallenge)="startChallenge()"
+      ></app-countdown>
+    </div>
 
-      <app-challenge-box [activeChallenge]="activeChallenge"></app-challenge-box>
-    </section>
+    <app-challenge-box
+      #challengeBox
+      [profile]="profile"
+      [experienceToNextLevel]="experienceToNextLevel"
+      (challengeBtnAction)="challengeBtnAction()"
+      (challengeCompleted)="challengeCompleted($event)"
+    ></app-challenge-box>
+  </section>
 </main>

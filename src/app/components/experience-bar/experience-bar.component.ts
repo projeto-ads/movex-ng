@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-experience-bar',
@@ -6,6 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./experience-bar.component.scss'],
 })
 export class ExperienceBarComponent implements OnInit {
+
   @Input() currentExperience: number;
   @Input() experienceToNextLevel: number;
 
@@ -13,10 +14,14 @@ export class ExperienceBarComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.calcPercentToNextLevel();
+  }
+
+  public calcPercentToNextLevel() {
     this.percentToNextLevel =
-      this.currentExperience >= 0
-        ? Math.round(this.currentExperience * 100) / this.experienceToNextLevel
-        : 0;
+    this.currentExperience >= 0
+      ? Math.round(this.currentExperience * 100) / this.experienceToNextLevel
+      : 0;
   }
 }
