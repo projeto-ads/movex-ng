@@ -18,7 +18,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import { ChallengeService } from './service/challenge.service';
 import { ProfileService } from './service/profile.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LevelupModalComponent,
     ProfileComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, CoreModule, NgbModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CoreModule
+  ],
   providers: [ChallengeService, ProfileService],
   bootstrap: [AppComponent]
 })
