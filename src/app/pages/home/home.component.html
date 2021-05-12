@@ -1,25 +1,29 @@
 <main class="container">
-  <app-experience-bar #experienceBar
+  <app-experience-bar
+    *ngIf="profile"
+    #experienceBar
     [currentExperience]="profile.currentExperience"
-    [experienceToNextLevel]="experienceToNextLevel"
-  ></app-experience-bar>
+    [experienceToNextLevel]="experienceToNextLevel">
+  </app-experience-bar>
 
   <section>
     <div class="cycle-container">
       <app-profile
+        *ngIf="profile"
         [name]="profile.name"
         [level]="profile.level"
-        [imageUrl]="profile.imageUrl"
-      ></app-profile>
+        [imageUrl]="profile.imageUrl">
+      </app-profile>
       <app-completed-challenges
-        [challengesCompleted]="profile.challengesCompleted"
-      ></app-completed-challenges>
+        *ngIf="profile"
+        [challengesCompleted]="profile.challengesCompleted">
+      </app-completed-challenges>
       <app-countdown
         #countdown
         [isActive]="isCountdownActive"
         [hasFinished]="hasCountdownFinished"
-        (startChallenge)="startChallenge()"
-      ></app-countdown>
+        (startChallenge)="startChallenge()">
+      </app-countdown>
     </div>
 
     <app-challenge-box
@@ -27,7 +31,7 @@
       [profile]="profile"
       [experienceToNextLevel]="experienceToNextLevel"
       (challengeBtnAction)="challengeBtnAction()"
-      (challengeCompleted)="challengeCompleted($event)"
-    ></app-challenge-box>
+      (challengeCompleted)="challengeCompleted($event)">
+    </app-challenge-box>
   </section>
 </main>
