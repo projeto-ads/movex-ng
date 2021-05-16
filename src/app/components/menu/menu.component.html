@@ -1,11 +1,45 @@
-<li>
-    <a routerLink="/home" routerLinkActive="selected">Home</a>
-</li>
-<li>
-    <a routerLink="/ranking" routerLinkActive="selected">Ranking</a>
-</li>
-<li>
-    <a routerLink="/achievements" routerLinkActive="selected">Conquistas</a>
-</li>
-
-<router-outlet></router-outlet>
+<div class="sidebar">
+  <div class="logo_content">
+    <div class="logo">
+      <div class="logo_name">Mov.ex</div>
+    </div>
+    <i class="bx bx-menu" id="btn" (click)="onClickMenu()"></i>
+  </div>
+  <ul class="nav_list">
+    <li>
+      <a routerLink="/home">
+        <i class="bx bx-home-alt"></i>
+        <span class="links_name">Home</span>
+      </a>
+      <span class="tooltip">Home</span>
+    </li>
+    <li>
+      <a routerLink="/ranking">
+        <i class="bx bx-bar-chart-alt-2"></i>
+        <span class="links_name">Ranking</span>
+      </a>
+      <span class="tooltip">Ranking</span>
+    </li>
+    <li>
+      <a routerLink="/profile">
+        <i class="bx bx-user"></i>
+        <span class="links_name">Profile</span>
+      </a>
+      <span class="tooltip">Profile</span>
+    </li>
+  </ul>
+  <div class="profile_content">
+    <div class="profile">
+      <div *ngIf="showProfileInfo" class="profile_details">
+        <img *ngIf="imageUrl" [src]="imageUrl" alt="">
+        <div class="name_job">
+          <div *ngIf="name" class="name">{{ name }}</div>
+        </div>
+      </div>
+      <i class='bx bx-log-out' id="log_out" ></i>
+    </div>
+  </div>
+</div>
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
