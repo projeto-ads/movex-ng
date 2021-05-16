@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AchievementsComponent } from './pages/achievements/achievements.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
@@ -10,7 +10,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'ranking', component: RankingComponent },
-    { path: 'achievements', component: AchievementsComponent },
+    { path: 'profile', component: ProfileComponent },
   ]}
 ];
 

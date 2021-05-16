@@ -3,7 +3,7 @@
   align-items: center;
   font-family: Rajdhani;
   font-weight: 600;
-  color: var(--title);
+  color: var(--blue-dark);
 }
 
 .countdown div {
@@ -57,10 +57,6 @@ button.start-cycle-button {
   font-weight: 600;
 
   transition: background-color 0.2s;
-}
-
-button.start-cycle-button:not([disabled]):hover {
-  background: var(--blue-dark);
 }
 
 button.start-cycle-button-active {
