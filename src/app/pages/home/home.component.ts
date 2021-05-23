@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.profileService.getProfileInfoById(1)
       .subscribe(profile => {
         this.profile = profile;
-        this.experienceToNextLevel = Math.pow(((this.profile.level + 1) * 4), 2);
+        this.experienceToNextLevel = Math.pow(((this.profile.level + 1) * 3), 2);
       });
   }
 
@@ -54,11 +54,11 @@ export class HomeComponent implements OnInit {
 
   public challengeCompleted(profile: Profile) {
     Object.assign(this.profile, profile);
-    this.experienceToNextLevel = Math.pow(((this.profile.level + 1) * 4), 2);
+    this.experienceToNextLevel = Math.pow(((this.profile.level + 1) * 3), 2);
     this.experienceBarComponent.currentExperience = this.profile.currentExperience;
     this.experienceBarComponent.calcPercentToNextLevel();
 
-    this.profileService.updateProfileInfo(this.profile)
+    this.profileService.updateChallengeInfo(this.profile)
       .subscribe();
   }
 

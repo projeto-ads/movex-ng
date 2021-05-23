@@ -1,0 +1,28 @@
+.content {
+  height: 100%;
+  max-width: 992px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+.content section {
+  flex: 1;
+
+  display: grid;
+  align-content: center;
+}
+
+.image-profile img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.footer-btn {
+  margin-top: 10px;
+}
+
+.footer-btn button {
+  width: 20%;
+}

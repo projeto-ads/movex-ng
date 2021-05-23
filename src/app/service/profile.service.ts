@@ -17,12 +17,23 @@ export class ProfileService extends AbstractRestService {
     return this.get(`/${id}`) as Observable<Profile>;
   }
 
-  public updateProfileInfo(profile: Profile): Observable<void> {
+  public updateChallengeInfo(profile: Profile): Observable<void> {
     return this.put(`/${profile.id}`, {
         level: profile.level,
         currentExperience: profile.currentExperience,
         challengesCompleted: profile.challengesCompleted
-    }) as Observable<void>
+    }) as Observable<void>;
+  }
+
+  public updateProfileInfo(idProfile: number, profile: Profile): Observable<void> {
+    return this.put(`/${idProfile}`, {
+        name: profile.name,
+        email: profile.email,
+    }) as Observable<void>;
+  }
+
+  public uploadProfileImage(idProfile:number, image64Base: string): Observable<any> {
+    return this.put(`/upload-image/${idProfile}`, { image64Base }) as Observable<any>;
   }
 
 }
