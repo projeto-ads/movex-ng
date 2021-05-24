@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CoreModule } from './core/core.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { AlertModule } from './components/alert/alert.module';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -14,11 +15,10 @@ import { CompletedChallengesComponent } from './components/completed-challenges/
 import { CountdownComponent } from './components/countdown/countdown.component';
 import { ExperienceBarComponent } from './components/experience-bar/experience-bar.component';
 import { LevelupModalComponent } from './components/levelup-modal/levelup-modal.component';
-import { ProfileInfoComponent } from './components/profile/profile-info.component';
+import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 
 import { ChallengeService } from './service/challenge.service';
 import { ProfileService } from './service/profile.service';
-
 
 @NgModule({
   declarations: [
@@ -36,8 +36,11 @@ import { ProfileService } from './service/profile.service';
   ],
   imports: [
     BrowserModule,
+    CoreModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AlertModule,
     AppRoutingModule,
-    CoreModule
   ],
   providers: [ChallengeService, ProfileService],
   bootstrap: [AppComponent]

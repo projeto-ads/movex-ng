@@ -162,8 +162,8 @@
   pointer-events: auto;
 }
 .profile .profile_details img{
-  height: 45px;
-  width: 45px;
+  height: 40px;
+  width: 40px;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -204,8 +204,7 @@
   height: 100%;
   width: calc(100% - 78px);
   left: 78px;
-  background: #E4E9F7;
+  background: #f8f9fa !important;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   transition: all 0.5s ease;
-  background-color: #EFEFEF;
 }
