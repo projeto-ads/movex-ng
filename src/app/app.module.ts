@@ -9,6 +9,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
 import { ChallengeBoxComponent } from './components/challenge-box/challenge-box.component';
 import { CompletedChallengesComponent } from './components/completed-challenges/completed-challenges.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
@@ -27,6 +28,7 @@ import { ProfileService } from './service/profile.service';
     RankingComponent,
     ProfileComponent,
     HomeComponent,
+    LoginComponent,
     ChallengeBoxComponent,
     CompletedChallengesComponent,
     CountdownComponent,

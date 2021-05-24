@@ -4,6 +4,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   { path: '', component: MenuComponent, children: [
@@ -11,6 +12,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'ranking', component: RankingComponent },
     { path: 'profile', component: ProfileComponent },
+    { path: 'login', component: LoginComponent },
   ]}
 ];
 
