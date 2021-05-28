@@ -1,1 +1,26 @@
-<p>profile works!</p>
+<main class="content">
+  <section>
+    <alert></alert>
+    <form [formGroup]="profileForm">
+      <div class="row">
+        <div class="col-md-3 col-sm-5 image-profile d-flex justify-content-center align-items-center flex-wrap">
+          <img class="img-thumbnail" [src]="imageUrl" />
+          <input class="form-control form-control-sm" type="file" (change)="fileChangeEvent($event)" formControlName="imageName">
+        </div>
+        <div class="col-md-8">
+          <div class="col-md-12">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" formControlName="name" />
+          </div>
+          <div class="col-md-12">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" formControlName="email" />
+          </div>
+          <div class="footer-btn">
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
