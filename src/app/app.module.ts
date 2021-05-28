@@ -10,6 +10,7 @@ import { RankingComponent } from './pages/ranking/ranking.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { ChallengeBoxComponent } from './components/challenge-box/challenge-box.component';
 import { CompletedChallengesComponent } from './components/completed-challenges/completed-challenges.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
@@ -19,6 +20,7 @@ import { ProfileInfoComponent } from './components/profile/profile-info.componen
 
 import { ChallengeService } from './service/challenge.service';
 import { ProfileService } from './service/profile.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -34,12 +36,14 @@ import { ProfileService } from './service/profile.service';
     CountdownComponent,
     ExperienceBarComponent,
     LevelupModalComponent,
-    ProfileInfoComponent
+    ProfileInfoComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule
   ],
   providers: [ChallengeService, ProfileService],
   bootstrap: [AppComponent]

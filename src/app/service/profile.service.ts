@@ -25,4 +25,12 @@ export class ProfileService extends AbstractRestService {
     }) as Observable<void>
   }
 
+  public register(name: string, email: string, password: string): Observable<void> {
+    return this.post('/profile', {
+      name,
+      email,
+      password
+    }) as Observable<void>
+  }
+
 }
