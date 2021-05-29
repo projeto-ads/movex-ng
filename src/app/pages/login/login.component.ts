@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/components/alert/alert.service';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
@@ -17,9 +18,18 @@ export class LoginComponent implements OnInit {
     password: '',
   };
 
+  options = {
+    autoClose: false,
+    keepAfterRouteChange: false
+  };
+
   form: FormGroup
 
-  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder,
+    private alertService: AlertService) {
     this.form = this.fb.group({
       email: ["", Validators.required],
       password: ["", Validators.required]
@@ -38,7 +48,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['home']);
           },
           (error) => {
-            alert('Email ou senha incorretos!');
+            this.alertService.warn('Email ou senha incorretos!', this.options);
           }
         );
     }

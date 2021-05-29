@@ -16,11 +16,13 @@ import { CompletedChallengesComponent } from './components/completed-challenges/
 import { CountdownComponent } from './components/countdown/countdown.component';
 import { ExperienceBarComponent } from './components/experience-bar/experience-bar.component';
 import { LevelupModalComponent } from './components/levelup-modal/levelup-modal.component';
-import { ProfileInfoComponent } from './components/profile/profile-info.component';
+import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 
 import { ChallengeService } from './service/challenge.service';
 import { ProfileService } from './service/profile.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AlertModule } from './components/alert/alert.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     CoreModule,
     ReactiveFormsModule,
     FormsModule,

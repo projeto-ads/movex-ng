@@ -1,4 +1,5 @@
 <section>
+  <alert></alert>
     <form [formGroup]="form">
         <div class="div-movex">
             <h1 style="color: turquoise;">Mov.ex</h1>
@@ -16,7 +17,7 @@
             <div class="div-button">
                 <button class="button-continue" type="submit" (click)="onSubmit()" [disabled]="!form.valid">Continuar</button>
             </div>
-            <a routerLink="/cadastro">
+            <a routerLink="/register">
                 <div class="div-button-register">
                     <button class="button-register">Ainda não tenho cadastro ></button>
                 </div>

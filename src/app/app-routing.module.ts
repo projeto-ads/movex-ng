@@ -9,24 +9,18 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { AuthGuard } from './core/auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: MenuComponent, children: [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'ranking', component: RankingComponent },
-    { path: 'profile', component: ProfileComponent },
-  ],
-  canActivate: [AuthGuard]
-},
-{
-  path: '',
-  component: LoginComponent,
-  children: [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'login', component: LoginComponent },
-    { path: 'cadastro', component: CadastroComponent },
-  ]
-},
-{ path: '**', redirectTo: '' }
+  {
+    path: '', component: MenuComponent, children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'ranking', component: RankingComponent },
+      { path: 'profile', component: ProfileComponent },
+    ],
+    canActivate: [AuthGuard]
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: CadastroComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
