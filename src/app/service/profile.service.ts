@@ -36,4 +36,12 @@ export class ProfileService extends AbstractRestService {
     return this.put(`/upload-image/${idProfile}`, { image64Base }) as Observable<any>;
   }
 
+  public register(name: string, email: string, password: string): Observable<void> {
+    return this.post('/profile', {
+      name,
+      email,
+      password
+    }) as Observable<void>
+  }
+
 }
