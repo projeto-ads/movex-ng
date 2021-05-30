@@ -1,4 +1,3 @@
-import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
@@ -10,6 +9,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService extends AbstractRestService{
+
+  profileInfo: Profile;
 
   constructor(http: HttpClient) {
     super(http, 'auth');

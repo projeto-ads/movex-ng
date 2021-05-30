@@ -20,7 +20,7 @@ export class ChallengeBoxComponent implements OnInit {
 
   public showLevelUpModal: boolean = false;
 
-  constructor(private challengeService: ChallengeService) {}
+  constructor(private challengeService: ChallengeService) { }
 
   ngOnInit(): void {
 

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChallengeBoxComponent } from 'src/app/components/challenge-box/challenge-box.component';
 import { CountdownComponent } from 'src/app/components/countdown/countdown.component';
 import { ExperienceBarComponent } from 'src/app/components/experience-bar/experience-bar.component';
+import { AuthService } from 'src/app/core/auth/auth.service';
 import { Profile } from 'src/app/model/profile.model';
 import { ProfileService } from 'src/app/service/profile.service';
 
@@ -21,8 +22,6 @@ export class HomeComponent implements OnInit {
   @ViewChild('experienceBar', { read: ExperienceBarComponent })
   private experienceBarComponent: ExperienceBarComponent;
 
-  public profile: Profile;
-
   public experienceToNextLevel: number = 0;
 
   public isCountdownActive: boolean = false;
@@ -30,18 +29,22 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private profileService: ProfileService,
+    public authService: AuthService,
   ) { }
 
   ngOnInit(): void {
     this.getProfileInfo();
   }
 
+
   public getProfileInfo() {
-    this.profileService.getProfileInfoById(1)
+    this.profileService.getProfileInfoById(this.authService.profileInfo.id)
       .subscribe(profile => {
-        this.profile = profile;
-        this.experienceToNextLevel = Math.pow(((this.profile.level + 1) * 3), 2);
+        this.authService.profileInfo = profile;
+        this.authService.profileInfo.imageUrl = profile.imageUrl + '?' + performance.now()
+        this.experienceToNextLevel = Math.pow(((profile.level + 1) * 3), 2);
       });
+
   }
 
   public startChallenge() {
@@ -53,12 +56,12 @@ export class HomeComponent implements OnInit {
   }
 
   public challengeCompleted(profile: Profile) {
-    Object.assign(this.profile, profile);
-    this.experienceToNextLevel = Math.pow(((this.profile.level + 1) * 3), 2);
-    this.experienceBarComponent.currentExperience = this.profile.currentExperience;
+    this.authService.profileInfo = profile;
+    this.experienceToNextLevel = Math.pow(((profile.level + 1) * 3), 2);
+    this.experienceBarComponent.currentExperience = profile.currentExperience;
     this.experienceBarComponent.calcPercentToNextLevel();
 
-    this.profileService.updateChallengeInfo(this.profile)
+    this.profileService.updateChallengeInfo(profile)
       .subscribe();
   }
 

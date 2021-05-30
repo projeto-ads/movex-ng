@@ -7,6 +7,7 @@ import { RankingComponent } from './pages/ranking/ranking.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { AuthGuard } from './core/auth/auth.guard';
+import { AuthResolver } from './core/auth/auth.resolver';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
       { path: 'ranking', component: RankingComponent },
       { path: 'profile', component: ProfileComponent },
     ],
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    resolve: { profile: AuthResolver }
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: CadastroComponent },

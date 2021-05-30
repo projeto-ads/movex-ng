@@ -1,22 +1,22 @@
 <main class="content">
   <app-experience-bar
-    *ngIf="profile"
+    *ngIf="authService.profileInfo && authService.profileInfo.currentExperience && experienceToNextLevel"
     #experienceBar
-    [currentExperience]="profile.currentExperience"
+    [currentExperience]="authService.profileInfo.currentExperience"
     [experienceToNextLevel]="experienceToNextLevel">
   </app-experience-bar>
 
   <section>
     <div class="cycle-container">
       <app-profile-info
-        *ngIf="profile"
-        [name]="profile.name"
-        [level]="profile.level"
-        [imageUrl]="profile.imageUrl">
+        *ngIf="authService.profileInfo"
+        [name]="authService.profileInfo.name"
+        [level]="authService.profileInfo.level"
+        [imageUrl]="authService.profileInfo.imageUrl">
       </app-profile-info>
       <app-completed-challenges
-        *ngIf="profile"
-        [challengesCompleted]="profile.challengesCompleted">
+        *ngIf="authService.profileInfo"
+        [challengesCompleted]="authService.profileInfo.challengesCompleted">
       </app-completed-challenges>
       <app-countdown
         #countdown
@@ -28,7 +28,7 @@
 
     <app-challenge-box
       #challengeBox
-      [profile]="profile"
+      [profile]="authService.profileInfo"
       [experienceToNextLevel]="experienceToNextLevel"
       (challengeBtnAction)="challengeBtnAction()"
       (challengeCompleted)="challengeCompleted($event)">

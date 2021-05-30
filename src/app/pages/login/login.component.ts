@@ -14,9 +14,9 @@ export class LoginComponent implements OnInit {
     email: string;
     password: string;
   } = {
-    email: '',
-    password: '',
-  };
+      email: '',
+      password: '',
+    };
 
   options = {
     autoClose: false,
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSubmit() {
     this.profile = this.form.getRawValue();
@@ -45,7 +45,11 @@ export class LoginComponent implements OnInit {
         .login(this.profile.email, this.profile.password)
         .subscribe(
           (result) => {
-            this.router.navigate(['home']);
+            if (result && result.access_token) {
+              this.authService.profileInfo = result.profile;
+              window.localStorage.setItem('token', result.access_token);
+              this.router.navigate(['home']);
+            }
           },
           (error) => {
             this.alertService.warn('Email ou senha incorretos!', this.options);

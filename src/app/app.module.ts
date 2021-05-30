@@ -24,6 +24,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertModule } from './components/alert/alert.module';
 import { RouterModule } from '@angular/router';
 
+import { AuthInterceptor } from './core/auth/auth-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +55,16 @@ import { RouterModule } from '@angular/router';
     CoreModule,
     ReactiveFormsModule
   ],
-  providers: [ChallengeService, ProfileService],
+  providers: [
+    ChallengeService,
+    ProfileService,
+    AuthInterceptor,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

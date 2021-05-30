@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AlertService } from 'src/app/components/alert/alert.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 import { Profile } from 'src/app/model/profile.model';
 import { ProfileService } from 'src/app/service/profile.service';
 import { isEmail } from 'src/app/util/email-util';
@@ -24,24 +25,26 @@ export class ProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private alertService: AlertService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    public authService: AuthService
   ) {
     this.profileForm = this.fb.group({
       name: [""],
-      email: [""],
+      email: {value: "", disabled: true},
       imageName: [""]
     });
   }
 
   ngOnInit(): void {
-    this.profileService.getProfileInfoById(1)
-      .subscribe(res => {
-        this.imageUrl = res.imageUrl;
+    this.profileService.getProfileInfoById(this.authService.profileInfo.id)
+      .subscribe(profile => {
+        this.authService.profileInfo = profile;
+        this.imageUrl = this.authService.profileInfo.imageUrl;
         this.profileForm.patchValue({
-          name: res.name,
-          email: res.email,
+          name: this.authService.profileInfo.name,
+          email: this.authService.profileInfo.email,
         });
-      })
+      });
   }
 
   onSubmit() {
@@ -51,10 +54,13 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    this.profileService.updateProfileInfo(1, new Profile({
-      name: valueForm.name,
-      email: valueForm.email
-    })).subscribe();
+    this.profileService.updateProfileInfo(this.authService.profileInfo.id, new Profile({
+      name: valueForm.name
+    })).subscribe(() => {
+      Object.assign(this.authService.profileInfo, {
+        name: valueForm.name
+      });
+    });
   }
 
   fileChangeEvent(fileInput: any) {
@@ -97,10 +103,13 @@ export class ProfileComponent implements OnInit {
 
             this.profileService.uploadProfileImage(1, imgBase64Path)
               .subscribe((result: Profile) => {
-                console.log(result.imageUrl);
+                this.authService.profileInfo.imageUrl = imgBase64Path;
               }, error => {
-                console.log(error);
-                this.imageUrl = this.defaultUrl;
+                if (this.imageUrl.includes('assets')) {
+                  this.imageUrl = this.defaultUrl;
+                } else {
+                  this.imageUrl = this.authService.profileInfo.imageUrl;
+                }
                 this.profileForm.get('imageName')?.patchValue(null);
               });
           }
