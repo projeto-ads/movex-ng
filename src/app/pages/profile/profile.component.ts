@@ -39,6 +39,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.getProfileInfoById(this.authService.profileInfo.id)
       .subscribe(profile => {
         this.authService.profileInfo = profile;
+        this.authService.profileInfo.imageUrl = profile.imageUrl + '?' + performance.now();
         this.imageUrl = this.authService.profileInfo.imageUrl;
         this.profileForm.patchValue({
           name: this.authService.profileInfo.name,
@@ -99,11 +100,11 @@ export class ProfileComponent implements OnInit {
             return;
           } else {
             const imgBase64Path = e.target.result;
-            this.imageUrl = imgBase64Path;
 
             this.profileService.uploadProfileImage(1, imgBase64Path)
               .subscribe((result: Profile) => {
                 this.authService.profileInfo.imageUrl = imgBase64Path;
+                this.imageUrl = imgBase64Path;
               }, error => {
                 if (this.imageUrl.includes('assets')) {
                   this.imageUrl = this.defaultUrl;
