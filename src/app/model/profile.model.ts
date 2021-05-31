@@ -3,6 +3,7 @@ export class Profile {
   id: number;
   name: string;
   email: string;
+  password: string;
   level: number = 1;
   currentExperience: number = 0;
   challengesCompleted: number = 0;

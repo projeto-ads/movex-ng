@@ -4,14 +4,25 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
+import { LoginComponent } from './pages/login/login.component';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { AuthGuard } from './core/auth/auth.guard';
+import { AuthResolver } from './core/auth/auth.resolver';
 
 const routes: Routes = [
-  { path: '', component: MenuComponent, children: [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'ranking', component: RankingComponent },
-    { path: 'profile', component: ProfileComponent },
-  ]}
+  {
+    path: '', component: MenuComponent, children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'ranking', component: RankingComponent },
+      { path: 'profile', component: ProfileComponent },
+    ],
+    canActivate: [AuthGuard],
+    resolve: { profile: AuthResolver }
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: CadastroComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

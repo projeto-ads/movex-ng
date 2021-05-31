@@ -31,12 +31,14 @@
   <div class="profile_content">
     <div class="profile">
       <div *ngIf="showProfileInfo" class="profile_details">
-        <img *ngIf="imageUrl" [src]="imageUrl" alt="">
+        <img *ngIf="authService.profileInfo && authService.profileInfo.imageUrl"
+          [src]="authService.profileInfo.imageUrl" alt="">
         <div class="name_job">
-          <div *ngIf="name" class="name">{{ name }}</div>
+          <div *ngIf="authService.profileInfo && authService.profileInfo.name" class="name">{{
+            authService.profileInfo.name.split(' ').slice(0, -1).join(' ') }}</div>
         </div>
       </div>
-      <i class='bx bx-log-out' id="log_out" ></i>
+      <i class='bx bx-log-out' id="log_out"></i>
     </div>
   </div>
 </div>

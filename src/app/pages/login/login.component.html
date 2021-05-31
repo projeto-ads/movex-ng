@@ -1,0 +1,27 @@
+<section>
+  <alert></alert>
+    <form [formGroup]="form">
+        <div class="div-movex">
+            <h1 style="color: turquoise;">Mov.ex</h1>
+        </div>
+        <div class="card div-card">
+            <div>
+                <h1 class="h1-login">Faça seu login</h1>
+            </div>
+            <div class="div-user">
+                <input class="input-user" type="email" placeholder="Usuário" formControlName="email" required>
+            </div>
+            <div class="div-password">
+                <input class="input-password" type="password" placeholder="Senha" formControlName="password" required>
+            </div>
+            <div class="div-button">
+                <button class="button-continue" type="submit" (click)="onSubmit()" [disabled]="!form.valid">Continuar</button>
+            </div>
+            <a routerLink="/register">
+                <div class="div-button-register">
+                    <button class="button-register">Ainda não tenho cadastro ></button>
+                </div>
+            </a>
+        </div>
+    </form>
+</section>

@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CoreModule } from './core/core.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
-import { AlertModule } from './components/alert/alert.module';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { ChallengeBoxComponent } from './components/challenge-box/challenge-box.component';
 import { CompletedChallengesComponent } from './components/completed-challenges/completed-challenges.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
@@ -19,6 +20,13 @@ import { ProfileInfoComponent } from './components/profile-info/profile-info.com
 
 import { ChallengeService } from './service/challenge.service';
 import { ProfileService } from './service/profile.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AlertModule } from './components/alert/alert.module';
+import { RouterModule } from '@angular/router';
+
+import { AuthInterceptor } from './core/auth/auth-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -27,22 +35,36 @@ import { ProfileService } from './service/profile.service';
     RankingComponent,
     ProfileComponent,
     HomeComponent,
+    LoginComponent,
     ChallengeBoxComponent,
     CompletedChallengesComponent,
     CountdownComponent,
     ExperienceBarComponent,
     LevelupModalComponent,
-    ProfileInfoComponent
+    ProfileInfoComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     CoreModule,
     ReactiveFormsModule,
     FormsModule,
     AlertModule,
     AppRoutingModule,
+    CoreModule,
+    ReactiveFormsModule
   ],
-  providers: [ChallengeService, ProfileService],
+  providers: [
+    ChallengeService,
+    ProfileService,
+    AuthInterceptor,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
