@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Profile } from 'src/app/model/profile.model';
 import { ProfileService } from 'src/app/service/profile.service';
@@ -15,8 +16,8 @@ export class MenuComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private profileService: ProfileService,
-    public authService: AuthService
+    public authService: AuthService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
@@ -29,5 +30,10 @@ export class MenuComponent implements OnInit {
     }
 
     this.showProfileInfo = !this.showProfileInfo;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.route.navigate(['/login']);
   }
 }

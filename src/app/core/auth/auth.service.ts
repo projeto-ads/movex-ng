@@ -63,5 +63,9 @@ export class AuthService extends AbstractRestService{
 
     return true;
   }
+
+  logout() {
+    window.localStorage.setItem('token', '');
+  }
   
 }
