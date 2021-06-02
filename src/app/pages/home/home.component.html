@@ -1,6 +1,6 @@
 <main class="content">
   <app-experience-bar
-    *ngIf="authService.profileInfo && authService.profileInfo.currentExperience && experienceToNextLevel"
+    *ngIf="authService.profileInfo && authService.profileInfo.currentExperience != undefined && experienceToNextLevel"
     #experienceBar
     [currentExperience]="authService.profileInfo.currentExperience"
     [experienceToNextLevel]="experienceToNextLevel">
