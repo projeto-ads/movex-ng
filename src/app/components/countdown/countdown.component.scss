@@ -50,7 +50,7 @@ button.start-cycle-button {
   border: 0;
   border-radius: 5px;
 
-  background: var(--blue);
+  background: var(--blue-button);
   color: var(--white);
 
   font-size: 1.25rem;
@@ -59,9 +59,14 @@ button.start-cycle-button {
   transition: background-color 0.2s;
 }
 
+button.start-cycle-button:hover {
+  background: #3860a3;
+  color:  var(--white);
+}
+
 button.start-cycle-button-active {
-  background: var(--white);
-  color: var(--title);
+  background: var(--red-active);
+  color:  var(--white);
 }
 
 button.start-cycle-button-active:not([disabled]):hover {
